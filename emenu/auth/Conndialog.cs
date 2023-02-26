@@ -7,11 +7,10 @@ namespace emenu_csharp
         {
             InitializeComponent();
 
-        }
-
-        private void usernameLabel_Click(object sender, EventArgs e)
-        {
-
+            HostnameBox.Text = emenu.Properties.Settings.Default.Hostname;
+            UsernameBox.Text = emenu.Properties.Settings.Default.Username;
+            PasswordBox.Text = emenu.Properties.Settings.Default.Password;
+            DBnameBox.Text = emenu.Properties.Settings.Default.db_name;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -31,7 +30,6 @@ namespace emenu_csharp
                 ConnectFunction();
             }
         }
-
 
         private void HostnameBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -68,11 +66,13 @@ namespace emenu_csharp
         private void ConnectFunction()
         {
             SQLDB connection = new SQLDB();
+
             string hostname = HostnameBox.Text;
+            string port;
             string username = UsernameBox.Text;
             string password = PasswordBox.Text;
             string db_name = DBnameBox.Text;
-            string port;
+
 
             if (hostname.Contains(":")) // checking the string contains the port
             {
@@ -94,6 +94,28 @@ namespace emenu_csharp
                 //MainWindow mainWindow = new MainWindow();
                 //mainWindow.Show();
             }
+        }
+
+        private void SaveLoginButton_Click(object sender, EventArgs e)
+        {
+            emenu.Properties.Settings.Default.Hostname = HostnameBox.Text;
+            emenu.Properties.Settings.Default.Username = UsernameBox.Text;
+            emenu.Properties.Settings.Default.Password = PasswordBox.Text;
+            emenu.Properties.Settings.Default.db_name = DBnameBox.Text;
+            emenu.Properties.Settings.Default.Save();
+        }
+
+        private void ClearLoginButton_Click(object sender, EventArgs e)
+        {
+            HostnameBox.Text = null;
+            UsernameBox.Text = null;
+            PasswordBox.Text = null;
+            DBnameBox.Text = null;
+            emenu.Properties.Settings.Default.Hostname = null;
+            emenu.Properties.Settings.Default.Username = null;
+            emenu.Properties.Settings.Default.Password = null;
+            emenu.Properties.Settings.Default.db_name = null;
+            emenu.Properties.Settings.Default.Save();
         }
     }
 }

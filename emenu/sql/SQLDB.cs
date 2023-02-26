@@ -14,7 +14,6 @@ namespace emenu_csharp
 
         MySqlConnection connection;
 
-        
         public bool OpenConnection()
         {
             try

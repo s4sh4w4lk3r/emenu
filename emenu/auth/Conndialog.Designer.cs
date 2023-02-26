@@ -31,154 +31,190 @@ namespace emenu_csharp
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Conndialog));
-            this.welcomeLabel = new System.Windows.Forms.Label();
-            this.HostnameBox = new System.Windows.Forms.TextBox();
-            this.UsernameBox = new System.Windows.Forms.TextBox();
-            this.PasswordBox = new System.Windows.Forms.TextBox();
-            this.DBnameBox = new System.Windows.Forms.TextBox();
-            this.hostnameLabel = new System.Windows.Forms.Label();
-            this.usernameLabel = new System.Windows.Forms.Label();
-            this.passwordlabel = new System.Windows.Forms.Label();
-            this.dbnameLabel = new System.Windows.Forms.Label();
-            this.connButton = new System.Windows.Forms.Button();
-            this.closeButton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            welcomeLabel = new Label();
+            HostnameBox = new TextBox();
+            UsernameBox = new TextBox();
+            PasswordBox = new TextBox();
+            DBnameBox = new TextBox();
+            hostnameLabel = new Label();
+            usernameLabel = new Label();
+            passwordlabel = new Label();
+            dbnameLabel = new Label();
+            connButton = new Button();
+            closeButton = new Button();
+            SaveLoginButton = new Button();
+            ClearLoginButton = new Button();
+            SuspendLayout();
             // 
             // welcomeLabel
             // 
-            this.welcomeLabel.AutoSize = true;
-            this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.welcomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.welcomeLabel.Location = new System.Drawing.Point(13, 13);
-            this.welcomeLabel.Name = "welcomeLabel";
-            this.welcomeLabel.Size = new System.Drawing.Size(217, 20);
-            this.welcomeLabel.TabIndex = 0;
-            this.welcomeLabel.Text = "Connect to MySQL Database";
+            welcomeLabel.AutoSize = true;
+            welcomeLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            welcomeLabel.ForeColor = SystemColors.ButtonHighlight;
+            welcomeLabel.Location = new Point(15, 15);
+            welcomeLabel.Margin = new Padding(4, 0, 4, 0);
+            welcomeLabel.Name = "welcomeLabel";
+            welcomeLabel.Size = new Size(217, 20);
+            welcomeLabel.TabIndex = 0;
+            welcomeLabel.Text = "Connect to MySQL Database";
             // 
             // HostnameBox
             // 
-            this.HostnameBox.Location = new System.Drawing.Point(84, 48);
-            this.HostnameBox.Name = "HostnameBox";
-            this.HostnameBox.Size = new System.Drawing.Size(157, 20);
-            this.HostnameBox.TabIndex = 1;
-            this.HostnameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HostnameBox_KeyDown);
+            HostnameBox.Location = new Point(98, 55);
+            HostnameBox.Margin = new Padding(4, 3, 4, 3);
+            HostnameBox.Name = "HostnameBox";
+            HostnameBox.Size = new Size(182, 23);
+            HostnameBox.TabIndex = 1;
+            HostnameBox.KeyDown += HostnameBox_KeyDown;
             // 
             // UsernameBox
             // 
-            this.UsernameBox.Location = new System.Drawing.Point(84, 74);
-            this.UsernameBox.Name = "UsernameBox";
-            this.UsernameBox.Size = new System.Drawing.Size(157, 20);
-            this.UsernameBox.TabIndex = 2;
-            this.UsernameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UsernameBox_KeyDown);
+            UsernameBox.Location = new Point(98, 85);
+            UsernameBox.Margin = new Padding(4, 3, 4, 3);
+            UsernameBox.Name = "UsernameBox";
+            UsernameBox.Size = new Size(182, 23);
+            UsernameBox.TabIndex = 2;
+            UsernameBox.KeyDown += UsernameBox_KeyDown;
             // 
             // PasswordBox
             // 
-            this.PasswordBox.Location = new System.Drawing.Point(84, 100);
-            this.PasswordBox.Name = "PasswordBox";
-            this.PasswordBox.PasswordChar = '*';
-            this.PasswordBox.Size = new System.Drawing.Size(157, 20);
-            this.PasswordBox.TabIndex = 3;
-            this.PasswordBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PasswordBox_KeyDown);
+            PasswordBox.Location = new Point(98, 115);
+            PasswordBox.Margin = new Padding(4, 3, 4, 3);
+            PasswordBox.Name = "PasswordBox";
+            PasswordBox.PasswordChar = '*';
+            PasswordBox.Size = new Size(182, 23);
+            PasswordBox.TabIndex = 3;
+            PasswordBox.KeyDown += PasswordBox_KeyDown;
             // 
             // DBnameBox
             // 
-            this.DBnameBox.Location = new System.Drawing.Point(84, 126);
-            this.DBnameBox.Name = "DBnameBox";
-            this.DBnameBox.Size = new System.Drawing.Size(157, 20);
-            this.DBnameBox.TabIndex = 4;
-            this.DBnameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DBnameBox_KeyDown);
+            DBnameBox.Location = new Point(98, 145);
+            DBnameBox.Margin = new Padding(4, 3, 4, 3);
+            DBnameBox.Name = "DBnameBox";
+            DBnameBox.Size = new Size(182, 23);
+            DBnameBox.TabIndex = 4;
+            DBnameBox.KeyDown += DBnameBox_KeyDown;
             // 
             // hostnameLabel
             // 
-            this.hostnameLabel.AutoSize = true;
-            this.hostnameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.hostnameLabel.ForeColor = System.Drawing.Color.White;
-            this.hostnameLabel.Location = new System.Drawing.Point(12, 49);
-            this.hostnameLabel.Name = "hostnameLabel";
-            this.hostnameLabel.Size = new System.Drawing.Size(64, 15);
-            this.hostnameLabel.TabIndex = 5;
-            this.hostnameLabel.Text = "Hostname";
+            hostnameLabel.AutoSize = true;
+            hostnameLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            hostnameLabel.ForeColor = Color.White;
+            hostnameLabel.Location = new Point(14, 57);
+            hostnameLabel.Margin = new Padding(4, 0, 4, 0);
+            hostnameLabel.Name = "hostnameLabel";
+            hostnameLabel.Size = new Size(64, 15);
+            hostnameLabel.TabIndex = 5;
+            hostnameLabel.Text = "Hostname";
             // 
             // usernameLabel
             // 
-            this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.usernameLabel.ForeColor = System.Drawing.Color.White;
-            this.usernameLabel.Location = new System.Drawing.Point(12, 75);
-            this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(65, 15);
-            this.usernameLabel.TabIndex = 6;
-            this.usernameLabel.Text = "Username";
-            this.usernameLabel.Click += new System.EventHandler(this.usernameLabel_Click);
+            usernameLabel.AutoSize = true;
+            usernameLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            usernameLabel.ForeColor = Color.White;
+            usernameLabel.Location = new Point(14, 87);
+            usernameLabel.Margin = new Padding(4, 0, 4, 0);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Size = new Size(65, 15);
+            usernameLabel.TabIndex = 6;
+            usernameLabel.Text = "Username";
             // 
             // passwordlabel
             // 
-            this.passwordlabel.AutoSize = true;
-            this.passwordlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.passwordlabel.ForeColor = System.Drawing.Color.White;
-            this.passwordlabel.Location = new System.Drawing.Point(12, 101);
-            this.passwordlabel.Name = "passwordlabel";
-            this.passwordlabel.Size = new System.Drawing.Size(61, 15);
-            this.passwordlabel.TabIndex = 7;
-            this.passwordlabel.Text = "Password";
+            passwordlabel.AutoSize = true;
+            passwordlabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            passwordlabel.ForeColor = Color.White;
+            passwordlabel.Location = new Point(14, 117);
+            passwordlabel.Margin = new Padding(4, 0, 4, 0);
+            passwordlabel.Name = "passwordlabel";
+            passwordlabel.Size = new Size(61, 15);
+            passwordlabel.TabIndex = 7;
+            passwordlabel.Text = "Password";
             // 
             // dbnameLabel
             // 
-            this.dbnameLabel.AutoSize = true;
-            this.dbnameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dbnameLabel.ForeColor = System.Drawing.Color.White;
-            this.dbnameLabel.Location = new System.Drawing.Point(12, 127);
-            this.dbnameLabel.Name = "dbnameLabel";
-            this.dbnameLabel.Size = new System.Drawing.Size(61, 15);
-            this.dbnameLabel.TabIndex = 8;
-            this.dbnameLabel.Text = "DB Name";
+            dbnameLabel.AutoSize = true;
+            dbnameLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dbnameLabel.ForeColor = Color.White;
+            dbnameLabel.Location = new Point(14, 147);
+            dbnameLabel.Margin = new Padding(4, 0, 4, 0);
+            dbnameLabel.Name = "dbnameLabel";
+            dbnameLabel.Size = new Size(61, 15);
+            dbnameLabel.TabIndex = 8;
+            dbnameLabel.Text = "DB Name";
             // 
             // connButton
             // 
-            this.connButton.Location = new System.Drawing.Point(297, 128);
-            this.connButton.Name = "connButton";
-            this.connButton.Size = new System.Drawing.Size(75, 23);
-            this.connButton.TabIndex = 9;
-            this.connButton.Text = "Connect";
-            this.connButton.UseVisualStyleBackColor = true;
-            this.connButton.Click += new System.EventHandler(this.connButton_Click);
+            connButton.Location = new Point(441, 105);
+            connButton.Margin = new Padding(4, 3, 4, 3);
+            connButton.Name = "connButton";
+            connButton.Size = new Size(88, 27);
+            connButton.TabIndex = 9;
+            connButton.Text = "Connect";
+            connButton.UseVisualStyleBackColor = true;
+            connButton.Click += connButton_Click;
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(378, 128);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 10;
-            this.closeButton.Text = "Exit";
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            closeButton.Location = new Point(441, 141);
+            closeButton.Margin = new Padding(4, 3, 4, 3);
+            closeButton.Name = "closeButton";
+            closeButton.Size = new Size(88, 27);
+            closeButton.TabIndex = 10;
+            closeButton.Text = "Exit";
+            closeButton.UseVisualStyleBackColor = true;
+            closeButton.Click += closeButton_Click;
+            // 
+            // SaveLoginButton
+            // 
+            SaveLoginButton.Location = new Point(441, 72);
+            SaveLoginButton.Margin = new Padding(4, 3, 4, 3);
+            SaveLoginButton.Name = "SaveLoginButton";
+            SaveLoginButton.Size = new Size(88, 27);
+            SaveLoginButton.TabIndex = 11;
+            SaveLoginButton.Text = "Save login";
+            SaveLoginButton.UseVisualStyleBackColor = true;
+            SaveLoginButton.Click += SaveLoginButton_Click;
+            // 
+            // ClearLoginButton
+            // 
+            ClearLoginButton.Location = new Point(441, 39);
+            ClearLoginButton.Margin = new Padding(4, 3, 4, 3);
+            ClearLoginButton.Name = "ClearLoginButton";
+            ClearLoginButton.Size = new Size(88, 27);
+            ClearLoginButton.TabIndex = 12;
+            ClearLoginButton.Text = "Clear login";
+            ClearLoginButton.UseVisualStyleBackColor = true;
+            ClearLoginButton.Click += ClearLoginButton_Click;
             // 
             // Conndialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(465, 163);
-            this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.connButton);
-            this.Controls.Add(this.dbnameLabel);
-            this.Controls.Add(this.passwordlabel);
-            this.Controls.Add(this.usernameLabel);
-            this.Controls.Add(this.hostnameLabel);
-            this.Controls.Add(this.DBnameBox);
-            this.Controls.Add(this.PasswordBox);
-            this.Controls.Add(this.UsernameBox);
-            this.Controls.Add(this.HostnameBox);
-            this.Controls.Add(this.welcomeLabel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "Conndialog";
-            this.Text = "Connect to Database";
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Conndialog_KeyUp);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(64, 64, 64);
+            ClientSize = new Size(542, 188);
+            Controls.Add(ClearLoginButton);
+            Controls.Add(SaveLoginButton);
+            Controls.Add(closeButton);
+            Controls.Add(connButton);
+            Controls.Add(dbnameLabel);
+            Controls.Add(passwordlabel);
+            Controls.Add(usernameLabel);
+            Controls.Add(hostnameLabel);
+            Controls.Add(DBnameBox);
+            Controls.Add(PasswordBox);
+            Controls.Add(UsernameBox);
+            Controls.Add(HostnameBox);
+            Controls.Add(welcomeLabel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "Conndialog";
+            Text = "Connect to Database";
+            KeyUp += Conndialog_KeyUp;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -194,5 +230,7 @@ namespace emenu_csharp
         private Label dbnameLabel;
         private Button connButton;
         private Button closeButton;
+        private Button SaveLoginButton;
+        private Button ClearLoginButton;
     }
 }
