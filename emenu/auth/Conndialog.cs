@@ -63,6 +63,28 @@ namespace emenu_csharp
             }
         }
 
+        private void SaveLoginButton_Click(object sender, EventArgs e)
+        {
+            emenu.Properties.Settings.Default.Hostname = HostnameBox.Text;
+            emenu.Properties.Settings.Default.Username = UsernameBox.Text;
+            emenu.Properties.Settings.Default.Password = PasswordBox.Text;
+            emenu.Properties.Settings.Default.db_name = DBnameBox.Text;
+            emenu.Properties.Settings.Default.Save();
+        }
+
+        private void ClearLoginButton_Click(object sender, EventArgs e)
+        {
+            HostnameBox.Text = null;
+            UsernameBox.Text = null;
+            PasswordBox.Text = null;
+            DBnameBox.Text = null;
+            emenu.Properties.Settings.Default.Hostname = null;
+            emenu.Properties.Settings.Default.Username = null;
+            emenu.Properties.Settings.Default.Password = null;
+            emenu.Properties.Settings.Default.db_name = null;
+            emenu.Properties.Settings.Default.Save();
+        }
+
         private void ConnectFunction()
         {
             SQLDB connection = new SQLDB();
@@ -85,6 +107,7 @@ namespace emenu_csharp
                 port = "3306";
             }
 
+            Debug.WriteLine($"Connecting to\n{username}@{hostname}:{port}\nDatabase Name: {db_name}");
             connection.GetParam(hostname, port, username, password, db_name);
             bool ConnnectionAvaliable = connection.OpenConnection();
             if (ConnnectionAvaliable == true)
@@ -96,26 +119,6 @@ namespace emenu_csharp
             }
         }
 
-        private void SaveLoginButton_Click(object sender, EventArgs e)
-        {
-            emenu.Properties.Settings.Default.Hostname = HostnameBox.Text;
-            emenu.Properties.Settings.Default.Username = UsernameBox.Text;
-            emenu.Properties.Settings.Default.Password = PasswordBox.Text;
-            emenu.Properties.Settings.Default.db_name = DBnameBox.Text;
-            emenu.Properties.Settings.Default.Save();
-        }
-
-        private void ClearLoginButton_Click(object sender, EventArgs e)
-        {
-            HostnameBox.Text = null;
-            UsernameBox.Text = null;
-            PasswordBox.Text = null;
-            DBnameBox.Text = null;
-            emenu.Properties.Settings.Default.Hostname = null;
-            emenu.Properties.Settings.Default.Username = null;
-            emenu.Properties.Settings.Default.Password = null;
-            emenu.Properties.Settings.Default.db_name = null;
-            emenu.Properties.Settings.Default.Save();
-        }
+       
     }
 }
