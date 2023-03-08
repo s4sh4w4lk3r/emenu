@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace emenu_csharp
+namespace emenu.forms.Conndialog
 {
     partial class Conndialog
     {

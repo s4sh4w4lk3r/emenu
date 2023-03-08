@@ -1,5 +1,6 @@
-﻿using System.Diagnostics;
-namespace emenu_csharp
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System.Diagnostics;
+namespace emenu.forms.Conndialog
 {
     public partial class Conndialog : Form
     {
@@ -7,10 +8,10 @@ namespace emenu_csharp
         {
             InitializeComponent();
 
-            HostnameBox.Text = emenu.Properties.Settings.Default.Hostname;
-            UsernameBox.Text = emenu.Properties.Settings.Default.Username;
-            PasswordBox.Text = emenu.Properties.Settings.Default.Password;
-            DBnameBox.Text = emenu.Properties.Settings.Default.db_name;
+            HostnameBox.Text = Properties.Settings.Default.Hostname;
+            UsernameBox.Text = Properties.Settings.Default.Username;
+            PasswordBox.Text = Properties.Settings.Default.Password;
+            DBnameBox.Text = Properties.Settings.Default.db_name;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -85,6 +86,7 @@ namespace emenu_csharp
             emenu.Properties.Settings.Default.Save();
         }
 
+        public static bool conndialogReady = false;
         private void ConnectFunction()
         {
             SQLDB connection = new SQLDB();
@@ -113,12 +115,31 @@ namespace emenu_csharp
             if (ConnnectionAvaliable == true)
             {
                 Debug.WriteLine($"Connected to {DBnameBox.Text}");
-                //Close();
-                //MainWindow mainWindow = new MainWindow();
-                //mainWindow.Show();
+                conndialogReady = true;
+                connection.CloseConnection();
+                Close();
             }
         }
+        public static string GetParams()
+        {
+            Conndialog conndialog = new Conndialog();
+            string hostname = conndialog.HostnameBox.Text;
+            string port;
+            string username = conndialog.UsernameBox.Text;
+            string password = conndialog.PasswordBox.Text;
+            string db_name = conndialog.DBnameBox.Text;
+            if (hostname.Contains(":"))
+            {
+                int colonIndex = hostname.LastIndexOf(":");
+                port = hostname.Substring(colonIndex + 1);
+                hostname = hostname.Substring(0, colonIndex);
+            } // checking the string contains the port
+            else port = "3306";
 
-       
+            return $"server={hostname};port={port};username={username};password={password};database={db_name}";
+
+        }
+
+
     }
 }

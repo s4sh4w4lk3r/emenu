@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="auth\" />
     <Folder Include="sql\" />
   </ItemGroup>
 

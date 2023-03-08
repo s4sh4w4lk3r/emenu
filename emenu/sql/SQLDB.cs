@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 
-namespace emenu_csharp
+namespace emenu
 {
     internal class SQLDB
     {
