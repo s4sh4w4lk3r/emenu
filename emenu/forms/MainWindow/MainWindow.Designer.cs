@@ -1,4 +1,4 @@
-﻿namespace emenu.forms.MainWindow
+﻿namespace emenu
 {
     partial class MainWindow
     {

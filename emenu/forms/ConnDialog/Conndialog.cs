@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using System.Diagnostics;
-namespace emenu.forms.Conndialog
+namespace emenu
 {
     public partial class Conndialog : Form
     {
@@ -86,60 +86,34 @@ namespace emenu.forms.Conndialog
             emenu.Properties.Settings.Default.Save();
         }
 
-        public static bool conndialogReady = false;
         private void ConnectFunction()
         {
-            SQLDB connection = new SQLDB();
-
             string hostname = HostnameBox.Text;
             string port;
             string username = UsernameBox.Text;
             string password = PasswordBox.Text;
             string db_name = DBnameBox.Text;
 
-
-            if (hostname.Contains(":")) // checking the string contains the port
+            if (hostname.Contains(':')) // checking the string contains the port
             {
                 int colonIndex = hostname.LastIndexOf(":");
                 port = hostname.Substring(colonIndex + 1);
                 hostname = hostname.Substring(0, colonIndex);
-            }
-            else
-            {
-                port = "3306";
-            }
-
-            Debug.WriteLine($"Connecting to\n{username}@{hostname}:{port}\nDatabase Name: {db_name}");
-            connection.GetParam(hostname, port, username, password, db_name);
-            bool ConnnectionAvaliable = connection.OpenConnection();
-            if (ConnnectionAvaliable == true)
-            {
-                Debug.WriteLine($"Connected to {DBnameBox.Text}");
-                conndialogReady = true;
-                connection.CloseConnection();
-                Close();
-            }
-        }
-        public static string GetParams()
-        {
-            Conndialog conndialog = new Conndialog();
-            string hostname = conndialog.HostnameBox.Text;
-            string port;
-            string username = conndialog.UsernameBox.Text;
-            string password = conndialog.PasswordBox.Text;
-            string db_name = conndialog.DBnameBox.Text;
-            if (hostname.Contains(":"))
-            {
-                int colonIndex = hostname.LastIndexOf(":");
-                port = hostname.Substring(colonIndex + 1);
-                hostname = hostname.Substring(0, colonIndex);
-            } // checking the string contains the port
+            } 
             else port = "3306";
 
-            return $"server={hostname};port={port};username={username};password={password};database={db_name}";
+            Debug.WriteLine($"Trying to connect to\n{username}@{hostname}:{port}\nDatabase Name: {db_name}");
 
+            var connection = new SQLDB(hostname, port, username, password, db_name);
+            if (connection.CheckLogin() == true) Start();
         }
 
-
+        private void Start()
+        {
+            Hide();
+            var mainWindow = new MainWindow();
+            mainWindow.Closed += (s, args) => this.Close();
+            mainWindow.Show();
+        }
     }
 }

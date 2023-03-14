@@ -8,20 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace emenu.forms.MainWindow
+namespace emenu
 {
     public partial class MainWindow : Form
     {
-        string SQLparams;
-        public MainWindow(in string SQL)
+        public MainWindow()
         {
             InitializeComponent();
-            SQLparams = SQL;
-        }
-
-        private void pizda()
-        {
-
         }
     }
 }
