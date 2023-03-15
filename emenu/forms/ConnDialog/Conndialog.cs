@@ -110,10 +110,17 @@ namespace emenu
 
         private void Start()
         {
-            Hide();
-            var mainWindow = new MainWindow();
-            mainWindow.Closed += (s, args) => this.Close();
-            mainWindow.Show();
+            //Hide();
+            // var mainWindow = new MainWindow();
+            // mainWindow.Closed += (s, args) => this.Close();
+            // mainWindow.Show();
+            Dictionary<int, string> name = new Dictionary<int, string>();
+            Dictionary<int, decimal> price = new Dictionary<int, decimal>();
+            SQLDB.SQLSelectAll(ref name, ref price);
+            for (int i = 1; i < name.Count; i++)
+            {   
+                Debug.WriteLine($"{i}\t{name[i]}\t{price[i]}");
+            }
         }
     }
 }
