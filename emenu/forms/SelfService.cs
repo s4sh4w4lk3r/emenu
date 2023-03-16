@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace emenu
+namespace emenu.forms
 {
-    public partial class MainWindow : Form
+    public partial class SelfService : Form
     {
-        public MainWindow()
+        public SelfService()
         {
             InitializeComponent();
         }
-        
     }
 }

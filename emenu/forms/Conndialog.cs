@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using System.Diagnostics;
-namespace emenu
+namespace emenu.forms
 {
     public partial class Conndialog : Form
     {
@@ -110,10 +110,6 @@ namespace emenu
 
         private void Start()
         {
-            //Hide();
-            // var mainWindow = new MainWindow();
-            // mainWindow.Closed += (s, args) => this.Close();
-            // mainWindow.Show();
             Dictionary<int, string> name = new Dictionary<int, string>();
             Dictionary<int, decimal> price = new Dictionary<int, decimal>();
             SQLDB.SQLSelectAll(ref name, ref price);
