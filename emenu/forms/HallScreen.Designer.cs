@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
@@ -35,6 +36,9 @@
             pictureBox1 = new PictureBox();
             label3 = new Label();
             panel3 = new Panel();
+            processingField = new Panel();
+            readyField = new Panel();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -111,12 +115,34 @@
             panel3.Size = new Size(687, 29);
             panel3.TabIndex = 4;
             // 
+            // processingField
+            // 
+            processingField.Location = new Point(12, 44);
+            processingField.Name = "processingField";
+            processingField.Size = new Size(174, 266);
+            processingField.TabIndex = 5;
+            // 
+            // readyField
+            // 
+            readyField.Location = new Point(192, 47);
+            readyField.Name = "readyField";
+            readyField.Size = new Size(174, 266);
+            readyField.TabIndex = 6;
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 5000;
+            timer1.Tick += timer1_Tick;
+            // 
             // HallScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(711, 357);
+            Controls.Add(readyField);
+            Controls.Add(processingField);
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
@@ -143,5 +169,8 @@
         private PictureBox pictureBox1;
         private Label label3;
         private Panel panel3;
+        private Panel processingField;
+        private Panel readyField;
+        private System.Windows.Forms.Timer timer1;
     }
 }
