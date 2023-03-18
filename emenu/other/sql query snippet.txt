@@ -1,0 +1,6 @@
+MySqlConnection connection = new MySqlConnection(connectionString);
+connection.Open();
+string query = "INSERT INTO men (id, name, age) VALUES (4, 'Kate', 18)";
+MySqlCommand command = new MySqlCommand(query, connection);
+command.ExecuteNonQuery();
+connection.Close();

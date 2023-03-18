@@ -16,6 +16,7 @@ namespace emenu.forms
         public Cashier()
         {
             InitializeComponent();
+
         }
 
         public void MakeOrder()
@@ -33,6 +34,19 @@ namespace emenu.forms
         private void button1_Click(object sender, EventArgs e)
         {
             MakeOrder();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SQLDB.ClearQuery();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var menu = new Menu(int.Parse(textBox2.Text));
+            Debug.WriteLine($"id = {menu.id}, name = {menu.name}, price = {menu.price}");
+            Debug.WriteLine(menu.picture);
+            Debug.WriteLine(menu.desc);
         }
     }
 }

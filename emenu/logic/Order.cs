@@ -7,12 +7,22 @@ using MySql.Data.MySqlClient;
 
 namespace emenu
 {
-    internal class Order
+    internal class Order 
     {
         public int[] listPos {get;}
         public int number {get;}
-        static int counter;
+        private static int counter;
+        private bool isReady = false;
+        public bool ISReady
+        {
+            get { return isReady; }
+        }
+        
 
+        /// <summary>
+        /// when creating an object, the order will be added to the database
+        /// </summary>
+        /// <param name="listPos"></param>
         public Order(params int[] listPos)
         {   
             if (counter > 999) counter = 0; //обнулятор 
@@ -21,23 +31,22 @@ namespace emenu
             counter++;
             var connection = SQLDB.connection;
             connection?.Open();
-            string query = "INSERT INTO `query`(`orderID`, `menupos`) VALUES";
+            string query = "INSERT INTO `orders`(`orderID`, `menupos`) VALUES";
 
-            if (listPos.Length == 1) query = $"INSERT INTO `query`( `orderID`, `menupos`) VALUES ({counter}, {listPos[0]});";
-             else 
+            if (listPos.Length == 1) query = $"INSERT INTO `orders`( `orderID`, `menupos`) VALUES ({counter}, {listPos[0]});";
+            else 
             {
-                for (int i = 0; i > listPos.Length; i++)
+                for (int i = 0; i < listPos.Length; i++)
                 {
-                    query += $" VALUES ({counter}, {listPos[i]}) "; //складывать строки запроса
+                    query += $"({counter}, {listPos[i]}), ";
                 }
+                query = query.TrimEnd(' ', ',');
+                query += ';';
             }
-            
-
 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.ExecuteNonQuery();
             connection?.Close();
-            
         }
 
         public void PrintOrder()
@@ -48,5 +57,11 @@ namespace emenu
                 Console.Write(item + " ");
             }
         }
+        public static void CloseOrder(ref Order? order)
+        {
+            order = null;
+        }
+
+
     }
 }

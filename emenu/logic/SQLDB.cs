@@ -45,27 +45,13 @@ namespace emenu
         }
 
         public static MySqlConnection? GetConnection {get;}
-
-        public static void SQLSelectAll(ref Dictionary<int, string> name, ref Dictionary<int, decimal> price)
+    
+        public static void ClearQuery()
         {
-            
             connection?.Open();
-            string query = "SELECT * FROM emenu";
+            string query = "DELETE FROM orders;";
             MySqlCommand command = new MySqlCommand(query, connection);
-            MySqlDataReader reader = command.ExecuteReader();
-            string? s1 = String.Empty;   int i1 = 0;
-            string? s2 = String.Empty;   
-            string? s3 = String.Empty;   decimal d3 = 0;
-            while (reader.Read())
-            {
-                s1 = reader[0].ToString();  int.TryParse(s1, out i1);
-                s2 = reader[1].ToString();
-                s3 = reader[2].ToString();  decimal.TryParse(s3, out d3);
-                
-                name.Add(i1, s2 ??= "Empty");
-                price.Add(i1, d3);
-            }
-            reader.Close();
+            command.ExecuteNonQuery();
             connection?.Close();
         }
     }
