@@ -110,13 +110,11 @@ namespace emenu.forms
 
         private void Start()
         {
-            Dictionary<int, string> name = new Dictionary<int, string>();
-            Dictionary<int, decimal> price = new Dictionary<int, decimal>();
-            SQLDB.SQLSelectAll(ref name, ref price);
-            for (int i = 1; i < name.Count; i++)
-            {   
-                Debug.WriteLine($"{i}\t{name[i]}\t{price[i]}");
-            }
+            Debug.WriteLine("Starting Mode Selection");
+            Hide();
+            var start = new ModeSelection();
+            start.Closed += (s, args) => this.Close();
+            start.Show();
         }
     }
 }

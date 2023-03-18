@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,23 @@ namespace emenu.forms
         public Cashier()
         {
             InitializeComponent();
+        }
+
+        public void MakeOrder()
+        {
+            List<int> list = IOProcessing.StringToList(textBox1.Text);
+            string orderString = String.Empty;
+            foreach (var item in list)
+            {
+                orderString += (item + ", ");
+            }
+            MessageBox.Show(orderString.TrimEnd(',', ' '));
+            var order = new Order(list.ToArray());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MakeOrder();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace emenu
 {
@@ -18,6 +19,25 @@ namespace emenu
             this.listPos = listPos;
             this.number = counter;
             counter++;
+            var connection = SQLDB.connection;
+            connection?.Open();
+            string query = "INSERT INTO `query`(`orderID`, `menupos`) VALUES";
+
+            if (listPos.Length == 1) query = $"INSERT INTO `query`( `orderID`, `menupos`) VALUES ({counter}, {listPos[0]});";
+             else 
+            {
+                for (int i = 0; i > listPos.Length; i++)
+                {
+                    query += $" VALUES ({counter}, {listPos[i]}) "; //складывать строки запроса
+                }
+            }
+            
+
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.ExecuteNonQuery();
+            connection?.Close();
+            
         }
 
         public void PrintOrder()
