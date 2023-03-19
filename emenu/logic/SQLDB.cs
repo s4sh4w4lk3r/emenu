@@ -6,24 +6,28 @@ namespace emenu
 {
     internal class SQLDB
     {
-        public static MySqlConnection? connection;
+        
+        //public static string? connString; // string with connection params
+        public static string connString = "server=localhost;port=3306;username=admin;password=admin;database=emenu"; //temp
+        public MySqlConnection connection {get; private set;} // just connection field for this class
 
-        public SQLDB() { }
-
-        public SQLDB(string host, string port, string user, string pass, string db_name)
+        public SQLDB(string connString) //executing this constructor creates a connection object
         {
-            connection = new MySqlConnection($"server={host};port={port};username={user};password={pass};database={db_name}");
+            connection = new MySqlConnection(connString);
         }
 
-        public bool CheckLogin()
-
+        public static bool CheckLogin(string host, string port, string user, string pass, string db_name) //needed to verify the login data
         {
+            string connString = $"server={host};port={port};username={user};password={pass};database={db_name}";
+            var testConnection = new MySqlConnection(connString);
+
             try
             {
-                if (connection?.State == System.Data.ConnectionState.Closed)
+                if (testConnection?.State == System.Data.ConnectionState.Closed)
                 {
-                    connection.Open();
-                    connection.Close();
+                    testConnection.Open();
+                    testConnection.Close();
+                    SQLDB.connString = connString;
                     return true;
                 }
                 else return false;
@@ -35,24 +39,15 @@ namespace emenu
             }
 
         }
-
-        public static void CloseConnection()
+        public static void ClearQuery() // clear table "orders"
         {
-            if (connection?.State == System.Data.ConnectionState.Open)
-            {
-                connection.Close();
-            }
-        }
-
-        public static MySqlConnection? GetConnection {get;}
-    
-        public static void ClearQuery()
-        {
+            var connection = new MySqlConnection(SQLDB.connString);
             connection?.Open();
             string query = "DELETE FROM orders;";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.ExecuteNonQuery();
             connection?.Close();
         }
+
     }
 }

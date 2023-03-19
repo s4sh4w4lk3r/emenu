@@ -86,7 +86,7 @@ namespace emenu.forms
             emenu.Properties.Settings.Default.Save();
         }
 
-        private void ConnectFunction()
+        private void ConnectFunction() 
         {
             string hostname = HostnameBox.Text;
             string port;
@@ -104,11 +104,10 @@ namespace emenu.forms
 
             Debug.WriteLine($"Trying to connect to\n{username}@{hostname}:{port}\nDatabase Name: {db_name}");
 
-            var connection = new SQLDB(hostname, port, username, password, db_name);
-            if (connection.CheckLogin() == true) Start();
+            if (SQLDB.CheckLogin(hostname, port, username, password, db_name)) Start();
         }
 
-        private void Start()
+        private void Start() //launch mode selection
         {
             Debug.WriteLine("Starting Mode Selection");
             Hide();

@@ -28,6 +28,7 @@ namespace emenu.forms
                 orderString += (item + ", ");
             }
             MessageBox.Show(orderString.TrimEnd(',', ' '));
+            Debug.WriteLine("added to db " + orderString.TrimEnd(',', ' '));
             var order = new Order(list.ToArray());
         }
 
