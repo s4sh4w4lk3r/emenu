@@ -52,17 +52,20 @@ namespace emenu
             string update = "SELECT * FROM orders";
             MySqlCommand command = new MySqlCommand(select, conn);
             MySqlDataReader reader = command.ExecuteReader();
-  
-            reader.Read();
-            int.TryParse(reader[0].ToString(), out orderID);
-            byte.TryParse(reader[1].ToString(), out status);
-            reader.Close();
-            
-            if (status == 0) update = $"UPDATE orders SET status=2 WHERE status=0 AND orderID={orderID};";
-            if (status == 1) update = $"UPDATE orders SET status=12 WHERE status=1 AND orderID={orderID};";
-            command = new MySqlCommand(update, conn);
-            command.ExecuteNonQuery();
-            conn.Close();
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                int.TryParse(reader[0].ToString(), out orderID);
+                byte.TryParse(reader[1].ToString(), out status);
+                reader.Close();
+                if (status == 0) update = $"UPDATE orders SET status=2 WHERE status=0 AND orderID={orderID};";
+                if (status == 1) update = $"UPDATE orders SET status=12 WHERE status=1 AND orderID={orderID};";
+                command = new MySqlCommand(update, conn);
+                command.ExecuteNonQuery();
+                conn.Close(); 
+                return orderID;
+            }
             return orderID;
         }
         //сделать такой же чекер для кухни
