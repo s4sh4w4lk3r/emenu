@@ -39,7 +39,7 @@ namespace emenu.forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SQLDB.ClearQuery();
+            SQLDB.ClearOrders();
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -39,7 +39,7 @@ namespace emenu
             }
 
         }
-        public static void ClearQuery() // clear table "orders"
+        public static void ClearOrders() // clear table "orders"
         {
             var connection = new MySqlConnection(SQLDB.connString);
             connection?.Open();
