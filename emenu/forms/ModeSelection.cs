@@ -52,7 +52,7 @@ namespace emenu.forms
             start.Show();
         }
         void StartSelfService()
-        {   
+        {
             Debug.WriteLine("SelfService Selected");
             Hide();
             var start = new SelfService();

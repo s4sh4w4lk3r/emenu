@@ -13,10 +13,10 @@ namespace emenu
         public int[] listPos { get; } //pos from menu
         public int number { get; } //number of order (ex. 001)
         private static int counter; // staic number incrementer
-        public byte status { get; private set; } // 0 - raw, 1 - on kitchen, 2 - on hallscreen, 12 - on kitchen & hallscreen,  3 - ready
+        public bool status { get; private set; } // 0 - processing, 1 - ready
         public Order(params int[] listPos) //placing an order
         //when we get the number, an object will be created with the fields: 
-        //list pos, number, status for the kitchen and the screen in the hall
+        //list pos, number, status
         {
             if (counter > 999) counter = 0; //reset counter when == 999
             this.listPos = listPos;
@@ -41,33 +41,63 @@ namespace emenu
             command.ExecuteNonQuery();
             connection?.Close();
         }
-        public static int HallScreenCheckOrder() //return orderID and this order changes its status
+        
+        #region //methods for hallscreen
+        public static HashSet<int> GetProcessingList()
+        {
+            HashSet<int> processingList = new HashSet<int>();
+            MySqlConnection conn = new MySqlConnection(SQLDB.connString);
+            conn.Open();
+            string sql = "SELECT orderID FROM orders WHERE status = 0";
+            MySqlCommand command = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int.TryParse(reader[0].ToString(), out int orderid);
+                processingList.Add(orderid);
+            }
+            reader.Close(); 
+            conn.Close();
+            return processingList;
+        }
+        public static HashSet<int> GetReadyList()
+
 
         {
+            HashSet<int> readyList = new HashSet<int>();
             MySqlConnection conn = new MySqlConnection(SQLDB.connString);
-            int orderID = -1; 
-            byte status = 255;
             conn.Open();
-            string select = "SELECT orderID, status FROM orders WHERE status = 0 OR status = 1;";
-            string update = "SELECT * FROM orders";
-            MySqlCommand command = new MySqlCommand(select, conn);
+            string sql = "SELECT orderID FROM orders WHERE status = 1";
+            MySqlCommand command = new MySqlCommand(sql, conn);
             MySqlDataReader reader = command.ExecuteReader();
-
-            if (reader.HasRows)
+            while (reader.Read())
             {
-                reader.Read();
-                int.TryParse(reader[0].ToString(), out orderID);
-                byte.TryParse(reader[1].ToString(), out status);
-                reader.Close();
-                if (status == 0) update = $"UPDATE orders SET status=2 WHERE status=0 AND orderID={orderID};";
-                if (status == 1) update = $"UPDATE orders SET status=12 WHERE status=1 AND orderID={orderID};";
-                command = new MySqlCommand(update, conn);
-                command.ExecuteNonQuery();
-                conn.Close(); 
-                return orderID;
+                int.TryParse(reader[0].ToString(), out int orderid);
+                readyList.Add(orderid);
             }
-            return orderID;
+            reader.Close(); 
+            conn.Close();
+            return readyList;
         }
-        //сделать такой же чекер для кухни
+        #endregion
+        public static void PassOrder(int orderId) //makes order status = 1
+        {
+            MySqlConnection connection = new MySqlConnection(SQLDB.connString);
+            connection.Open();
+            string query = $"UPDATE orders SET status = 1 WHERE orderID = {orderId};";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public static void RemoveReadyOrders() //remove orders which status = 1
+        {
+            MySqlConnection connection = new MySqlConnection(SQLDB.connString);
+            connection.Open();
+            string query = "DELETE FROM orders WHERE status = 1;";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        
     }
 }

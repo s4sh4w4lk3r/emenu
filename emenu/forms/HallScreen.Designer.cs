@@ -30,14 +30,17 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            listBox1 = new ListBox();
             panel2 = new Panel();
             label1 = new Label();
             panel3 = new Panel();
+            listBox2 = new ListBox();
             panel4 = new Panel();
             label2 = new Label();
             panel5 = new Panel();
             pictureBox1 = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
+            button1 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -48,12 +51,22 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(listBox1);
             panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(200, 456);
             panel1.TabIndex = 0;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(3, 56);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(194, 364);
+            listBox1.TabIndex = 1;
             // 
             // panel2
             // 
@@ -80,12 +93,22 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(listBox2);
             panel3.Controls.Add(panel4);
             panel3.Dock = DockStyle.Right;
             panel3.Location = new Point(250, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(200, 456);
             panel3.TabIndex = 1;
+            // 
+            // listBox2
+            // 
+            listBox2.FormattingEnabled = true;
+            listBox2.ItemHeight = 15;
+            listBox2.Location = new Point(3, 56);
+            listBox2.Name = "listBox2";
+            listBox2.Size = new Size(194, 364);
+            listBox2.TabIndex = 2;
             // 
             // panel4
             // 
@@ -135,12 +158,23 @@
             timer1.Interval = 5000;
             timer1.Tick += timer1_Tick;
             // 
+            // button1
+            // 
+            button1.Location = new Point(675, 37);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 4;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // HallScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(919, 513);
+            Controls.Add(button1);
             Controls.Add(pictureBox1);
             Controls.Add(panel5);
             Name = "HallScreen";
@@ -165,5 +199,8 @@
         private Panel panel5;
         private PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
+        private ListBox listBox1;
+        private ListBox listBox2;
+        private Button button1;
     }
 }

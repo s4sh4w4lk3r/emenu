@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using emenu.Properties;
 using MySql.Data.MySqlClient;
 
 namespace emenu
@@ -19,24 +20,23 @@ namespace emenu
             InitializeComponent();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        List<string> processingList = new List<string>();
+        List<string> readyList = new List<string>();
+        private void timer1_Tick(object sender, EventArgs e) //сделать дизайн
         {
-            int number = Order.HallScreenCheckOrder();
-            if (number >= 0)
-            {
-                NewLabel(4, 89, number);
-            }
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            List<int> IntProcessingList = Order.GetProcessingList().ToList();
+            List<int> IntReadyList = Order.GetReadyList().ToList();
+            processingList = IntProcessingList.ConvertAll(x => IOProcessing.ToThreeDigit(x));
+            readyList = IntReadyList.ConvertAll(x => IOProcessing.ToThreeDigit(x));
+            listBox1.Items.AddRange(processingList.ToArray());
+            listBox2.Items.AddRange(readyList.ToArray());
         }
-        void NewLabel(int x, int y, int number)
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            var l = new Label();
-            l.AutoSize = true;
-            l.Font = new Font("Impact", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
-            l.ForeColor = SystemColors.Highlight;
-            l.Location = new Point(4, 89);
-            l.Size = new Size(90, 36);
-            l.TabIndex = 2;
-            l.Text = IOProcessing.ToThreeDigit(number);
+            Order.RemoveReadyOrders();
         }
     }
 }
