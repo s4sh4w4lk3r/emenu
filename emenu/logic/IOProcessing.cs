@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Resources;
 
 namespace emenu
 {
@@ -6,13 +7,13 @@ namespace emenu
     {
         public static string ToThreeDigit(int orderID)
         {
-            return String.Format("{0:D3}", orderID);
+            return string.Format("{0:D3}", orderID);
         }
         public static List<int> StringToList (string input)
 
         {
             var menuPoses = new List<int>();
-            if (input != String.Empty)
+            if (input != string.Empty)
             {
                 string[] stringMenuPoses = input.Split(',', ' ', '.', '-', ';', ':');
                 foreach (string item in stringMenuPoses)

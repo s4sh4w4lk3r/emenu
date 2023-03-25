@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using emenu.Properties;
 using MySql.Data.MySqlClient;
 
-namespace emenu
+namespace emenu.forms
 {
     public partial class HallScreen : Form
     {

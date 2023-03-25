@@ -9,6 +9,7 @@ namespace emenu
         public string? description {get;} // product description
         public decimal price {get;} // product price
         public string? picture {get;} // link to the product picture
+        public Menu() {} //zaglushka
         public Menu(int id) //a object "product" is created by id from the database
         {
 
@@ -19,18 +20,35 @@ namespace emenu
             MySqlCommand command = new MySqlCommand(query, connection);
             MySqlDataReader reader = command.ExecuteReader();
 
-            while (reader.Read()) // only one cycle iteration
-            {
-                this.id = id;
-                name = reader[1].ToString();
-                description = reader[2].ToString();
-                decimal.TryParse(reader[3].ToString(), out decimal internalPrice); price = internalPrice;
-                picture = reader[4].ToString();
-                break;
-            }
+            reader.Read();
+            this.id = id;
+            name = reader[1].ToString();
+            description = reader[2].ToString();
+            decimal.TryParse(reader[3].ToString(), out decimal internalPrice); price = internalPrice;
+            picture = reader[4].ToString();
+
             reader.Close(); 
             connection?.Close();
         }
+        public static List<Menu> GetMenuList() //gets all menus form database
+        {
+            List<Menu> menuList = new List<Menu>();
+            MySqlConnection connection = new MySqlConnection(SQLDB.connString);
 
+            connection.Open();
+            string select = "SELECT * FROM menu;";
+            MySqlCommand command = new MySqlCommand(select, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int.TryParse(reader[0].ToString(), out int menuID);
+                menuList.Add(new Menu(menuID));
+            }
+            
+            reader.Close(); 
+            connection.Close();
+            return menuList;
+        }
     }
 }

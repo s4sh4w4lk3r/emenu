@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,38 +15,29 @@ namespace emenu.forms
         public Cashier()
         {
             InitializeComponent();
-
+            FillDataGrid();
         }
 
-        public void MakeOrder()
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            List<int> list = IOProcessing.StringToList(textBox1.Text);
-            string orderString = String.Empty;
-            foreach (var item in list)
+            var senderGrid = (DataGridView)sender;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                orderString += (item + ", ");
+                MessageBox.Show("Test");
             }
-            MessageBox.Show(orderString.TrimEnd(',', ' '));
-            Debug.WriteLine("added to db " + orderString.TrimEnd(',', ' '));
-            var order = new Order(list);
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void FillDataGrid()
         {
-            MakeOrder();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            SQLDB.ClearOrders();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var menu = new Menu(int.Parse(textBox2.Text));
-            Debug.WriteLine($"id = {menu.id}, name = {menu.name}, price = {menu.price}");
-            Debug.WriteLine(menu.picture);
-            Debug.WriteLine(menu.description);
+            List<Menu> menulist = Menu.GetMenuList();
+            dataGridView1.RowCount = menulist.Count + 1;
+            for (int i = 0; i < menulist.Count; i++)
+            {
+                Image image = Image.
+                dataGridView1.Rows[i].Cells[0].Value = image;
+                dataGridView1.Rows[i].Cells[1].Value = menulist[i].name?.ToString();
+                dataGridView1.Rows[i].Cells[2].Value = menulist[i].price.ToString();
+                dataGridView1.Rows[i].Cells[2].Value = "Add";
+            }
         }
     }
 }

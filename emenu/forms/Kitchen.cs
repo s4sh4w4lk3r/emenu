@@ -17,13 +17,11 @@ namespace emenu.forms
         {
             InitializeComponent();
         }
-
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             List<Order> orders = Order.GetOrdersKitchen().ToList();
 
-            dataGridView1.RowCount = orders.Count+1;
+            dataGridView1.RowCount = orders.Count + 1;
             for (int i = 0; i < orders.Count; i++)
             {
                 dataGridView1.Rows[i].Cells[0].Value = IOProcessing.ToThreeDigit(orders[i].orderID);
@@ -31,7 +29,6 @@ namespace emenu.forms
                 dataGridView1.Rows[i].Cells[2].Value = "Pass Order";
             }
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;

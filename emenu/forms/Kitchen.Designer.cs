@@ -48,7 +48,7 @@
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(799, 449);
+            dataGridView1.Size = new Size(1152, 624);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -79,7 +79,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1153, 625);
             Controls.Add(dataGridView1);
             Name = "Kitchen";
             Text = "Kitchen";

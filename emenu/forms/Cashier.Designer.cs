@@ -28,92 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            textBox1 = new TextBox();
-            pictureBox1 = new PictureBox();
-            button2 = new Button();
-            textBox2 = new TextBox();
-            button3 = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            dataGridView1 = new DataGridView();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            clearBtn = new Button();
+            nextBtn = new Button();
+            label1 = new Label();
+            picture = new DataGridViewImageColumn();
+            name = new DataGridViewTextBoxColumn();
+            price = new DataGridViewTextBoxColumn();
+            AddButton = new DataGridViewButtonColumn();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
+            // dataGridView1
             // 
-            button1.Location = new Point(12, 41);
-            button1.Name = "button1";
-            button1.Size = new Size(127, 23);
-            button1.TabIndex = 0;
-            button1.Text = "make order";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = Color.DarkSlateBlue;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { picture, name, price, AddButton });
+            dataGridView1.Location = new Point(12, 12);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(909, 636);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // textBox1
+            // panel1
             // 
-            textBox1.Location = new Point(12, 12);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(189, 23);
-            textBox1.TabIndex = 1;
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(clearBtn);
+            panel1.Controls.Add(nextBtn);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(927, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(226, 635);
+            panel1.TabIndex = 1;
             // 
-            // pictureBox1
+            // panel2
             // 
-            pictureBox1.Location = new Point(473, 32);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(254, 178);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            panel2.BackColor = Color.DeepPink;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(10, 636);
+            panel2.TabIndex = 2;
             // 
-            // button2
+            // clearBtn
             // 
-            button2.Location = new Point(159, 41);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 3;
-            button2.Text = "Clear";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            clearBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            clearBtn.BackColor = Color.Firebrick;
+            clearBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            clearBtn.ForeColor = SystemColors.ButtonHighlight;
+            clearBtn.Location = new Point(16, 595);
+            clearBtn.Margin = new Padding(5, 3, 3, 3);
+            clearBtn.Name = "clearBtn";
+            clearBtn.Size = new Size(100, 41);
+            clearBtn.TabIndex = 2;
+            clearBtn.Text = "Clear";
+            clearBtn.UseVisualStyleBackColor = false;
             // 
-            // textBox2
+            // nextBtn
             // 
-            textBox2.Location = new Point(12, 147);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 4;
+            nextBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            nextBtn.BackColor = Color.ForestGreen;
+            nextBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            nextBtn.ForeColor = Color.White;
+            nextBtn.Location = new Point(126, 595);
+            nextBtn.Name = "nextBtn";
+            nextBtn.Size = new Size(100, 41);
+            nextBtn.TabIndex = 1;
+            nextBtn.Text = "Next";
+            nextBtn.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // label1
             // 
-            button3.Location = new Point(12, 180);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 5;
-            button3.Text = "Get menu";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.Coral;
+            label1.Location = new Point(16, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(200, 32);
+            label1.TabIndex = 0;
+            label1.Text = "CHECKOUT";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // picture
+            // 
+            picture.HeaderText = "Pictrure";
+            picture.Name = "picture";
+            // 
+            // name
+            // 
+            name.HeaderText = "Name";
+            name.Name = "name";
+            // 
+            // price
+            // 
+            price.HeaderText = "Price";
+            price.Name = "price";
+            // 
+            // AddButton
+            // 
+            AddButton.HeaderText = "Add";
+            AddButton.Name = "AddButton";
             // 
             // Cashier
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button3);
-            Controls.Add(textBox2);
-            Controls.Add(button2);
-            Controls.Add(pictureBox1);
-            Controls.Add(textBox1);
-            Controls.Add(button1);
+            BackColor = Color.DarkSlateBlue;
+            ClientSize = new Size(1165, 659);
+            Controls.Add(panel1);
+            Controls.Add(dataGridView1);
             Name = "Cashier";
             Text = "Cashier";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private TextBox textBox1;
-        private PictureBox pictureBox1;
-        private Button button2;
-        private TextBox textBox2;
-        private Button button3;
+        private DataGridView dataGridView1;
+        private Panel panel1;
+        private Button clearBtn;
+        private Button nextBtn;
+        private Label label1;
+        private Panel panel2;
+        private DataGridViewImageColumn picture;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn price;
+        private DataGridViewButtonColumn AddButton;
     }
 }
