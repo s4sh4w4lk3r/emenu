@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
             orderID = new DataGridViewTextBoxColumn();
             orderContent = new DataGridViewTextBoxColumn();
             passButton = new DataGridViewButtonColumn();
+            timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -46,7 +48,7 @@
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(788, 438);
+            dataGridView1.Size = new Size(799, 449);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -65,6 +67,12 @@
             passButton.HeaderText = "Action";
             passButton.Name = "passButton";
             passButton.Text = "Pass order";
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 5000;
+            timer1.Tick += timer1_Tick;
             // 
             // Kitchen
             // 
@@ -85,5 +93,6 @@
         private DataGridViewTextBoxColumn orderID;
         private DataGridViewTextBoxColumn orderContent;
         private DataGridViewButtonColumn passButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }

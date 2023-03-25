@@ -26,8 +26,8 @@ namespace emenu
         {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
-            List<int> IntProcessingList = Order.GetProcessingList().ToList();
-            List<int> IntReadyList = Order.GetReadyList().ToList();
+            List<int> IntProcessingList = Order.GetProcessingIDsList().ToList();
+            List<int> IntReadyList = Order.GetReadyIDsList().ToList();
             processingList = IntProcessingList.ConvertAll(x => IOProcessing.ToThreeDigit(x));
             readyList = IntReadyList.ConvertAll(x => IOProcessing.ToThreeDigit(x));
             listBox1.Items.AddRange(processingList.ToArray());

@@ -50,7 +50,7 @@ namespace emenu
         }
         
         #region //methods for hallscreen
-        public static HashSet<int> GetProcessingList()
+        public static HashSet<int> GetProcessingIDsList()
         {
             HashSet<int> processingList = new HashSet<int>();
             MySqlConnection connection = new MySqlConnection(SQLDB.connString);
@@ -67,7 +67,7 @@ namespace emenu
             connection.Close();
             return processingList;
         }
-        public static HashSet<int> GetReadyList()
+        public static HashSet<int> GetReadyIDsList()
         {
             HashSet<int> readyList = new HashSet<int>();
             MySqlConnection connection = new MySqlConnection(SQLDB.connString);
@@ -87,6 +87,7 @@ namespace emenu
         #endregion
         public static void PassOrder(int orderID) //makes order status = 1
         {
+            if (orderID == -1) { return; } 
             MySqlConnection connection = new MySqlConnection(SQLDB.connString);
             connection.Open();
             string update = $"UPDATE orders SET status = 1 WHERE orderID = {orderID};";
@@ -123,6 +124,24 @@ namespace emenu
             }
             connection.Close();
             return order;
+        }
+        public static HashSet<Order> GetOrdersKitchen()
+        {
+            HashSet<Order> kitchenOrdersList = new HashSet<Order>();
+
+            MySqlConnection connection = new MySqlConnection(SQLDB.connString);
+            connection.Open();
+            string select = "SELECT orderID, menupos FROM orders WHERE status = 0";
+            MySqlCommand command = new MySqlCommand(select, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {   
+                int.TryParse(reader[0].ToString(), out int orderID);
+                kitchenOrdersList.Add(GetOrder(orderID));
+            }
+            reader.Close(); 
+            connection.Close();
+            return kitchenOrdersList;
         }
     }
 }

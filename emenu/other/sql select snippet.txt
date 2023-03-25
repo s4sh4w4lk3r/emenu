@@ -1,6 +1,6 @@
 получить одно значение
 
-MySqlConnection connection = new MySqlConnection(connStr);
+MySqlConnection connection = new MySqlConnection(SQLDB.connString);
 connection.Open();
 string sql = "SELECT name FROM men WHERE id = 2";
 MySqlCommand command = new MySqlCommand(sql, connection);
@@ -10,7 +10,7 @@ connection.Close();
 
 получить несколько строк
 
-MySqlConnection connection = new MySqlConnection(connStr);
+MySqlConnection connection = new MySqlConnection(SQLDB.connString);
 connection.Open();
 string sql = "SELECT id, name FROM men WHERE age = 22";
 MySqlCommand command = new MySqlCommand(sql, connection);

@@ -1,4 +1,4 @@
-MySqlConnection connection = new MySqlConnection(connectionString);
+MySqlConnection connection = new MySqlConnection(SQLDB.connString);
 connection.Open();
 string query = "INSERT INTO men (id, name, age) VALUES (4, 'Kate', 18)";
 MySqlCommand command = new MySqlCommand(query, connection);

@@ -48,6 +48,33 @@ namespace emenu
             command.ExecuteNonQuery();
             connection?.Close();
         }
+        public static void CheckCreateTables() //checking database tables and creates them if not exist
+        {
+            string createMenu = 
+                "CREATE TABLE IF NOT EXISTS `menu` (" +
+                "  `id` int NOT NULL AUTO_INCREMENT,"+
+                "  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL," +
+                "  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,"+
+                "  `price` decimal(5,2) NOT NULL,"+
+                "  `picture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'link for pic',"+
+                "  PRIMARY KEY (`id`)"+
+                ") ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
 
+            string createOrders = 
+            "CREATE TABLE IF NOT EXISTS `orders` ("+
+            "  `orderID` int NOT NULL,"+
+            "  `menupos` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL,"+
+            "  `status` tinyint UNSIGNED NOT NULL,"+
+            "  UNIQUE KEY `orderID Unique` (`orderID`) USING BTREE"+
+            ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
+            
+            string megaCreate = createMenu + "\n" + createOrders;
+
+            var connection = new MySqlConnection(SQLDB.connString);
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(megaCreate, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }

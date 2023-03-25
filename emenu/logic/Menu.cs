@@ -6,7 +6,7 @@ namespace emenu
     {
         public int id {get;} // id of this product
         public string? name {get;} // product name
-        public string? desc {get;} // product description
+        public string? description {get;} // product description
         public decimal price {get;} // product price
         public string? picture {get;} // link to the product picture
         public Menu(int id) //a object "product" is created by id from the database
@@ -23,7 +23,7 @@ namespace emenu
             {
                 this.id = id;
                 name = reader[1].ToString();
-                desc = reader[2].ToString();
+                description = reader[2].ToString();
                 decimal.TryParse(reader[3].ToString(), out decimal internalPrice); price = internalPrice;
                 picture = reader[4].ToString();
                 break;

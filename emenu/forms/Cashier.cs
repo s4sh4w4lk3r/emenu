@@ -47,7 +47,7 @@ namespace emenu.forms
             var menu = new Menu(int.Parse(textBox2.Text));
             Debug.WriteLine($"id = {menu.id}, name = {menu.name}, price = {menu.price}");
             Debug.WriteLine(menu.picture);
-            Debug.WriteLine(menu.desc);
+            Debug.WriteLine(menu.description);
         }
     }
 }
