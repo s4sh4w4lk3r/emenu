@@ -42,9 +42,9 @@ namespace emenu
         public static void ClearOrders() // clear table "orders"
         {
             var connection = new MySqlConnection(SQLDB.connString);
-            connection?.Open();
-            string query = "DELETE FROM orders;";
-            MySqlCommand command = new MySqlCommand(query, connection);
+            connection.Open();
+            string delete = "DELETE FROM orders;";
+            MySqlCommand command = new MySqlCommand(delete, connection);
             command.ExecuteNonQuery();
             connection?.Close();
         }

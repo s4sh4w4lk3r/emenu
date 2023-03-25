@@ -13,10 +13,9 @@ namespace emenu
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            //ApplicationConfiguration.Initialize();
-            //Application.Run(new Kitchen());
-            new Order(1, 2, 3, 4, 5);
-            new Order(9, 8, 7, 6, 5);
+            ApplicationConfiguration.Initialize();
+            Application.Run(new HallScreen());
+
         }
     }
 }

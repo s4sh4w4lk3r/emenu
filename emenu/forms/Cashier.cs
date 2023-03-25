@@ -29,7 +29,7 @@ namespace emenu.forms
             }
             MessageBox.Show(orderString.TrimEnd(',', ' '));
             Debug.WriteLine("added to db " + orderString.TrimEnd(',', ' '));
-            var order = new Order(list.ToArray());
+            var order = new Order(list);
         }
 
         private void button1_Click(object sender, EventArgs e)

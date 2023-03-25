@@ -4,16 +4,10 @@ namespace emenu
 {
     class IOProcessing
     {
-        /// <summary>
-        /// Convert "1" to "001".
-        /// </summary>
-        /// <param name="orderNumber"></param>
-        /// <returns></returns>
-        public static string ToThreeDigit(int orderNumber)
+        public static string ToThreeDigit(int orderID)
         {
-            return String.Format("{0:D3}", orderNumber);
+            return String.Format("{0:D3}", orderID);
         }
-
         public static List<int> StringToList (string input)
 
         {
@@ -29,6 +23,14 @@ namespace emenu
             else MessageBox.Show("String is empty");
             return menuPoses;
         }
-        
+        public static string ListToString(List<int> input)
+        {
+            string str = string.Empty;
+            foreach (var item in input)
+            {
+                str+= $"{item} ";
+            }
+            return str;
+        }
     }
 }

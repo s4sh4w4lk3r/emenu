@@ -1,0 +1,16 @@
+class orders:
+orderID - номер заказа
+counter - счетчик
+status = статус
+menuIDs - лист с позициями из меню
+
+class menu:
+id - id элемента меню
+name - имя
+desc - описание
+picture - ссылка на пикчу
+price - цена
+
+sql 
+называть все строки с запросом как и запрос
+connection - всегда так называть объект
