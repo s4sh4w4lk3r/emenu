@@ -33,5 +33,16 @@ namespace emenu
             }
             return str;
         }
+        public static string MenuIDsToNames(List<int> input)
+        {
+            string output = string.Empty;
+            Dictionary <int, string> menuIDsToNamesList = Menu.IDsNamesDict;
+            foreach (int item in input)
+            {
+                output += $"{menuIDsToNamesList[item]}, ";
+            }
+
+            return output = output.TrimEnd(' ', ',');
+        }
     }
 }

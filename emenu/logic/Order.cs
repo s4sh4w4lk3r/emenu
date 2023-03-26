@@ -15,12 +15,12 @@ namespace emenu
         private static int counter; // staic number incrementer
         public bool status { get; private set; } // 0 - processing, 1 - ready
 
-        public Order(List<int> menuIDsIn) //placing an order
+        public Order(List<int> menuIDs) //placing an order
         //when we get the menuIDs, an object will be created with the fields: 
         //list menuIDs, number, status
         {
             if (counter > 999) counter = 0; //reset counter when == 999
-            this.menuIDs = menuIDsIn;
+            this.menuIDs = menuIDs;
             this.orderID = counter;
             string menupos = string.Empty;
             counter++;

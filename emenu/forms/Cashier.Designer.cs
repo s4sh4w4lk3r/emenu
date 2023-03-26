@@ -30,6 +30,8 @@
         {
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
+            priceLabel = new Label();
+            richTextBox1 = new RichTextBox();
             panel2 = new Panel();
             clearBtn = new Button();
             nextBtn = new Button();
@@ -45,12 +47,17 @@
             // dataGridView1
             // 
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.DarkSlateBlue;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.ColumnHeadersVisible = false;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { picture, name, price, AddButton });
+            dataGridView1.GridColor = SystemColors.ControlDarkDark;
             dataGridView1.Location = new Point(12, 12);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(909, 636);
             dataGridView1.TabIndex = 0;
@@ -58,7 +65,9 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.Controls.Add(priceLabel);
+            panel1.Controls.Add(richTextBox1);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(clearBtn);
             panel1.Controls.Add(nextBtn);
@@ -68,8 +77,33 @@
             panel1.Size = new Size(226, 635);
             panel1.TabIndex = 1;
             // 
+            // priceLabel
+            // 
+            priceLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            priceLabel.AutoSize = true;
+            priceLabel.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
+            priceLabel.ForeColor = Color.Coral;
+            priceLabel.Location = new Point(16, 555);
+            priceLabel.Name = "priceLabel";
+            priceLabel.Size = new Size(169, 37);
+            priceLabel.TabIndex = 4;
+            priceLabel.Text = "Итого: 0.00₽";
+            priceLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBox1.BackColor = Color.DarkSlateBlue;
+            richTextBox1.ForeColor = Color.Coral;
+            richTextBox1.Location = new Point(16, 35);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(207, 517);
+            richTextBox1.TabIndex = 3;
+            richTextBox1.Text = "";
+            // 
             // panel2
             // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel2.BackColor = Color.DeepPink;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
@@ -89,6 +123,7 @@
             clearBtn.TabIndex = 2;
             clearBtn.Text = "Clear";
             clearBtn.UseVisualStyleBackColor = false;
+            clearBtn.Click += clearBtn_Click;
             // 
             // nextBtn
             // 
@@ -102,6 +137,7 @@
             nextBtn.TabIndex = 1;
             nextBtn.Text = "Next";
             nextBtn.UseVisualStyleBackColor = false;
+            nextBtn.Click += nextBtn_Click;
             // 
             // label1
             // 
@@ -116,8 +152,11 @@
             // 
             // picture
             // 
+            picture.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             picture.HeaderText = "Pictrure";
+            picture.Image = Properties.Resources.Без_имени_2;
             picture.Name = "picture";
+            picture.Width = 21;
             // 
             // name
             // 
@@ -126,13 +165,19 @@
             // 
             // price
             // 
+            price.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             price.HeaderText = "Price";
             price.Name = "price";
+            price.Width = 21;
             // 
             // AddButton
             // 
-            AddButton.HeaderText = "Add";
+            AddButton.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            AddButton.FlatStyle = FlatStyle.Popup;
+            AddButton.HeaderText = "Action";
             AddButton.Name = "AddButton";
+            AddButton.Text = "";
+            AddButton.Width = 21;
             // 
             // Cashier
             // 
@@ -146,6 +191,7 @@
             Text = "Cashier";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -157,6 +203,8 @@
         private Button nextBtn;
         private Label label1;
         private Panel panel2;
+        private RichTextBox richTextBox1;
+        private Label priceLabel;
         private DataGridViewImageColumn picture;
         private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn price;

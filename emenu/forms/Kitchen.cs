@@ -16,6 +16,10 @@ namespace emenu.forms
         public Kitchen()
         {
             InitializeComponent();
+            dataGridView1.DefaultCellStyle.Font = new Font("Tahoma", 15);
+            dataGridView1.DefaultCellStyle.BackColor = Color.DarkSlateBlue;
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Coral;
+            Menu.FillMenuDict();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -25,7 +29,7 @@ namespace emenu.forms
             for (int i = 0; i < orders.Count; i++)
             {
                 dataGridView1.Rows[i].Cells[0].Value = IOProcessing.ToThreeDigit(orders[i].orderID);
-                dataGridView1.Rows[i].Cells[1].Value = IOProcessing.ListToString(orders[i].menuIDs);
+                dataGridView1.Rows[i].Cells[1].Value = IOProcessing.MenuIDsToNames(orders[i].menuIDs);
                 dataGridView1.Rows[i].Cells[2].Value = "Pass Order";
             }
         }

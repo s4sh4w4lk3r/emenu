@@ -50,5 +50,15 @@ namespace emenu
             connection.Close();
             return menuList;
         }
+        public static Dictionary<int, string> IDsNamesDict { get; private set; } = new Dictionary<int, string>();
+        public static void FillMenuDict()
+        {   
+            List<Menu> menuList = GetMenuList();
+            Menu.IDsNamesDict.Add(0, string.Empty);
+            foreach (var item in menuList)
+            {
+                Menu.IDsNamesDict.Add(item.id, item.name ?? string.Empty);
+            }
+        }
     }
 }
