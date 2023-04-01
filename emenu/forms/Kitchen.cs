@@ -43,5 +43,10 @@ namespace emenu.forms
                 Order.PassOrder(orderIDtoPass);
             }
         }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            Order.RemoveReadyOrders();
+        }
     }
 }

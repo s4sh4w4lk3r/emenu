@@ -15,38 +15,68 @@ namespace emenu
 
             if (id < 1) {MessageBox.Show("The item does not exist"); return;} // exit method if bad ID
             var connection = new MySqlConnection(SQLDB.connString);
-            connection?.Open();
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Connection failed.");
+                return;
+            }
             string query = $"SELECT * FROM menu WHERE ID = {id}";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            MySqlDataReader reader = command.ExecuteReader();
+            try
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlDataReader reader = command.ExecuteReader();
 
-            reader.Read();
-            this.id = id;
-            name = reader[1].ToString();
-            description = reader[2].ToString();
-            decimal.TryParse(reader[3].ToString(), out decimal internalPrice); price = internalPrice;
-            picture = reader[4].ToString();
+                reader.Read();
+                this.id = id;
+                name = reader[1].ToString();
+                description = reader[2].ToString();
+                decimal.TryParse(reader[3].ToString(), out decimal internalPrice); price = internalPrice;
+                picture = reader[4].ToString();
 
-            reader.Close(); 
-            connection?.Close();
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            connection.Close();
         }
         public static List<Menu> GetMenuList() //gets all menus form database
         {
             List<Menu> menuList = new List<Menu>();
             MySqlConnection connection = new MySqlConnection(SQLDB.connString);
 
-            connection.Open();
-            string select = "SELECT * FROM menu;";
-            MySqlCommand command = new MySqlCommand(select, connection);
-            MySqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                int.TryParse(reader[0].ToString(), out int menuID);
-                menuList.Add(new Menu(menuID));
+                connection.Open();
             }
-            
-            reader.Close(); 
+            catch (Exception)
+            {
+                MessageBox.Show("Connection failed.");
+                return menuList;
+            }
+            string select = "SELECT * FROM menu;";
+            try
+            {
+                MySqlCommand command = new MySqlCommand(select, connection);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int.TryParse(reader[0].ToString(), out int menuID);
+                    menuList.Add(new Menu(menuID));
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
             connection.Close();
             return menuList;
         }

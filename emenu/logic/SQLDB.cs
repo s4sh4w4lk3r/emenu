@@ -42,11 +42,23 @@ namespace emenu
         public static void ClearOrders() // clear table "orders"
         {
             var connection = new MySqlConnection(SQLDB.connString);
-            connection.Open();
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Connection failed.");
+                return;
+            }
             string delete = "DELETE FROM orders;";
             MySqlCommand command = new MySqlCommand(delete, connection);
-            command.ExecuteNonQuery();
-            connection?.Close();
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            connection.Close();
         }
         public static void CheckCreateTables() //checking database tables and creates them if not exist
         {
@@ -71,10 +83,51 @@ namespace emenu
             string megaCreate = createMenu + "\n" + createOrders;
 
             var connection = new MySqlConnection(SQLDB.connString);
-            connection.Open();
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Connection failed.");
+                return;
+            }
             MySqlCommand command = new MySqlCommand(megaCreate, connection);
-            command.ExecuteNonQuery();
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            connection.Close();
+        }
+        public static void TestMenuInsert()
+        {
+
+        }
+        public static void TestOrderInsert()
+        {
+            MySqlConnection connection = new MySqlConnection(SQLDB.connString);
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Connection failed.");
+                return;
+            }
+            string insert = "INSERT INTO `orders` (`orderID`, `menupos`, `status`) VALUES " +
+            "('111', '1 2 3 4 5 6', '0'), ('222', '7 8 9', '0'), ('333', '10 11', '0'), " +
+            "('444', '12 13 14', '0'), ('555', '15 54 342', '0'), ('666', '32 76 87', '0'), " +
+            "('777', '174 ', '0'), ('888', '78', '0'), ('999', '123', '0'), ('000', '312', '0')";
+            MySqlCommand command = new MySqlCommand(insert, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             connection.Close();
         }
     }
+
 }

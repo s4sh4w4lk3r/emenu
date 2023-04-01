@@ -34,6 +34,7 @@
             orderContent = new DataGridViewTextBoxColumn();
             passButton = new DataGridViewButtonColumn();
             timer1 = new System.Windows.Forms.Timer(components);
+            timer2 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -84,6 +85,12 @@
             timer1.Interval = 5000;
             timer1.Tick += timer1_Tick;
             // 
+            // timer2
+            // 
+            timer2.Enabled = true;
+            timer2.Interval = 15000;
+            timer2.Tick += timer2_Tick;
+            // 
             // Kitchen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -104,5 +111,6 @@
         private DataGridViewTextBoxColumn orderID;
         private DataGridViewTextBoxColumn orderContent;
         private DataGridViewButtonColumn passButton;
+        private System.Windows.Forms.Timer timer2;
     }
 }

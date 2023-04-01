@@ -33,6 +33,7 @@ namespace emenu.forms
             if (HallScreenButton.Checked) { StartHallScreen(); }
             if (SelfServiceRadio.Checked) { StartSelfService(); }
             if (KitchenRadio.Checked) { StartKitchen(); }
+            if (AdminButton.Checked) { StartAdmin(); }
         }
 
         void StartCashier()
@@ -64,6 +65,14 @@ namespace emenu.forms
             Debug.WriteLine("Kitchen Selected");
             Hide();
             var start = new Kitchen();
+            start.Closed += (s, args) => this.Close();
+            start.Show();
+        }
+        void StartAdmin()
+        {
+            Debug.WriteLine("Admin Selected");
+            Hide();
+            var start = new Admin();
             start.Closed += (s, args) => this.Close();
             start.Show();
         }

@@ -37,6 +37,7 @@ namespace emenu.forms
                 Menu menuItem = menuList.Find(menu => menu.id == menuID) ?? new Menu();
                 checkoutList.Add(menuItem);
             }
+            totalPrice = 0;
             foreach (var item in checkoutList)
             {
                 richTextBox1.Text += $"{item.name}\t{item.price}₽\n\n";
@@ -50,7 +51,7 @@ namespace emenu.forms
             dataGridView1.RowCount = menuList.Count + 1;
             for (int i = 0; i < menuList.Count; i++)
             {
-                //dataGridView1.Rows[i].Cells[0].Value = image;
+                //dataGridView1.Rows[i].Cells[0].Value = Image.FromStream()
                 dataGridView1.Rows[i].Cells[1].Value = menuList[i].name?.ToString();
                 dataGridView1.Rows[i].Cells[2].Value = menuList[i].price.ToString() + "₽";
                 dataGridView1.Rows[i].Cells[3].Value = "+";

@@ -36,6 +36,7 @@
             label1 = new Label();
             ContinueButton = new Button();
             BackButton = new Button();
+            AdminButton = new RadioButton();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -81,6 +82,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(AdminButton);
             groupBox1.Controls.Add(CashierRadio);
             groupBox1.Controls.Add(HallScreenButton);
             groupBox1.Controls.Add(KitchenRadio);
@@ -88,7 +90,7 @@
             groupBox1.ForeColor = SystemColors.ControlLightLight;
             groupBox1.Location = new Point(12, 36);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(146, 123);
+            groupBox1.Size = new Size(146, 148);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "Operating mode";
@@ -106,7 +108,7 @@
             // 
             // ContinueButton
             // 
-            ContinueButton.Location = new Point(268, 133);
+            ContinueButton.Location = new Point(311, 158);
             ContinueButton.Name = "ContinueButton";
             ContinueButton.Size = new Size(100, 27);
             ContinueButton.TabIndex = 6;
@@ -116,7 +118,7 @@
             // 
             // BackButton
             // 
-            BackButton.Location = new Point(268, 100);
+            BackButton.Location = new Point(311, 125);
             BackButton.Name = "BackButton";
             BackButton.Size = new Size(100, 27);
             BackButton.TabIndex = 7;
@@ -124,16 +126,28 @@
             BackButton.UseVisualStyleBackColor = true;
             BackButton.Click += BackButton_Click;
             // 
+            // AdminButton
+            // 
+            AdminButton.AutoSize = true;
+            AdminButton.Location = new Point(6, 122);
+            AdminButton.Name = "AdminButton";
+            AdminButton.Size = new Size(61, 19);
+            AdminButton.TabIndex = 4;
+            AdminButton.TabStop = true;
+            AdminButton.Text = "Admin";
+            AdminButton.UseVisualStyleBackColor = true;
+            // 
             // ModeSelection
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(380, 176);
+            ClientSize = new Size(423, 196);
             Controls.Add(BackButton);
             Controls.Add(ContinueButton);
             Controls.Add(label1);
             Controls.Add(groupBox1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "ModeSelection";
             Text = "ModeSelection";
             Load += ModeSelection_Load;
@@ -153,5 +167,6 @@
         private Label label1;
         private Button ContinueButton;
         private Button BackButton;
+        private RadioButton AdminButton;
     }
 }
